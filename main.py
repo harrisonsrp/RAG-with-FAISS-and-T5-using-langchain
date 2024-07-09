@@ -21,7 +21,6 @@ if __name__ == '__main__':
     embeddings = HuggingFaceEmbeddings(model_name="t5-base")
     vectorstore = FAISS.from_documents(texts, embeddings)
     vectorstore.save_local("faiss_embed")
-    new_vector = FAISS.load_local("faiss_embed", embeddings, allow_dangerous_deserialization=True)
     retrieval_qa_chat_prompt = hub.pull("langchain-ai/retrieval-qa-chat")
     combine_docs_chain = create_stuff_documents_chain(llm, retrieval_qa_chat_prompt)
     retrival_chain = create_retrieval_chain(
