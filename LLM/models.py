@@ -6,7 +6,7 @@ from transformers import T5Tokenizer, T5ForConditionalGeneration, pipeline
 
 class t5_model:
 
-    def __init__(self, model_id="t5-base"):
+    def __init__(self, model_id="google/flan-t5-base"):
         self.model_id = model_id
         self.tokenizer = T5Tokenizer.from_pretrained(self.model_id)
 

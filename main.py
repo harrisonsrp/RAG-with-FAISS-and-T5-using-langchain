@@ -15,7 +15,7 @@ if __name__ == '__main__':
     document = loader.load()
     llm = t5_model().load_model()
     text_splitter = CharacterTextSplitter(
-        chunk_size=1500, chunk_overlap=0, separator="\n"
+        chunk_size=1000, chunk_overlap=0, separator="\n"
     )
     texts = text_splitter.split_documents(document)
     embeddings = HuggingFaceEmbeddings(model_name="t5-base")
@@ -26,6 +26,6 @@ if __name__ == '__main__':
     retrival_chain = create_retrieval_chain(
         retriever=vectorstore.as_retriever(), combine_docs_chain=combine_docs_chain
     )
-    query = {"input": "who is elon musk?"}
+    query = {"input": "what is elon last name?"}
     result = retrival_chain.invoke(input=query)
     print(result['answer'])
